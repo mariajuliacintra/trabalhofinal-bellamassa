@@ -149,7 +149,8 @@ Consultas realizadas para verificar os dados cadastrados:
 - Listagem de clientes;
 - Buscar de cliente por nome.
 
-![Select](./imagens/select.png)
+![Select](./imagens/select1.png)
+![Select](./imagens/select2.png)
 
 ---
 
@@ -159,7 +160,8 @@ Atualização de informações previamente cadastradas:
 
 - Alteração do telefone do cliente;
 
-![Update](./imagens/update.png)
+![Update](./imagens/update1.png)
+![Update](./imagens/update2.png)
 
 ---
 

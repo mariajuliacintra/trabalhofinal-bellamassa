@@ -1,27 +1,20 @@
 --Relatórios
--- ============================================================
---  BELLA MASSA – 10 CONSULTAS SQL
---  Seleção | Filtro (WHERE) | Ordenação (ORDER BY)
--- ============================================================
-
-
 -- ------------------------------------------------------------
 -- 1. Clientes que possuem conta fidelidade com saldo positivo
---    Tabelas: cliente + conta_fidelidade
 -- ------------------------------------------------------------
 SELECT c.id_cliente,
        c.nome_completo,
-       c.telefone,
+       t.telefone,
        cf.saldo
 FROM   bellamassa.cliente c
 JOIN   bellamassa.conta_fidelidade cf ON cf.fk_id_cliente = c.id_cliente
+LEFT JOIN bellamassa.telefone t       ON t.fk_id_cliente  = c.id_cliente
 WHERE  cf.saldo > 0
 ORDER  BY cf.saldo DESC;
 
 
 -- ------------------------------------------------------------
 -- 2. Pedidos realizados em junho de 2026, com nome do cliente
---    Tabelas: pedido + cliente
 -- ------------------------------------------------------------
 SELECT p.id_pedido,
        c.nome_completo  AS cliente,
@@ -35,7 +28,6 @@ ORDER  BY p.data_hora ASC;
 
 -- ------------------------------------------------------------
 -- 3. Itens de pedido cujo preço unitário é maior que R$ 40,00
---    Tabelas: pedido_produto + produto + pedido + cliente
 -- ------------------------------------------------------------
 SELECT c.nome_completo        AS cliente,
        p.id_pedido,
@@ -53,22 +45,20 @@ ORDER  BY subtotal DESC;
 
 -- ------------------------------------------------------------
 -- 4. Pedidos que ainda NÃO foram atribuídos a um motoboy
---    Tabelas: pedido + cliente
 -- ------------------------------------------------------------
 SELECT p.id_pedido,
        c.nome_completo AS cliente,
-       c.telefone,
+       t.telefone,
        p.data_hora,
        p.valor_total
 FROM   bellamassa.pedido p
-JOIN   bellamassa.cliente c ON c.id_cliente = p.fk_id_cliente
+JOIN   bellamassa.cliente c  ON c.id_cliente    = p.fk_id_cliente
+LEFT JOIN bellamassa.telefone t ON t.fk_id_cliente = c.id_cliente
 WHERE  p.cpf_motoboy IS NULL
 ORDER  BY p.data_hora ASC;
 
-
 -- ------------------------------------------------------------
 -- 5. Histórico de entregas por motoboy (apenas pedidos entregues)
---    Tabelas: pedido + motoboy + cliente
 -- ------------------------------------------------------------
 SELECT m.nome_motoboy,
        m.cpf,
@@ -84,7 +74,6 @@ ORDER  BY total_entregas DESC;
 
 -- ------------------------------------------------------------
 -- 6. Endereços de entrega dos clientes que já fizeram pedidos
---    Tabelas: cliente + endereco + pedido
 -- ------------------------------------------------------------
 SELECT DISTINCT
        c.nome_completo AS cliente,
@@ -101,7 +90,6 @@ ORDER  BY c.nome_completo, e.bairro;
 
 -- ------------------------------------------------------------
 -- 7. Produtos do tipo 'Pizza' presentes em algum pedido
---    Tabelas: produto + pedido_produto
 -- ------------------------------------------------------------
 SELECT pr.id_produto,
        pr.nome_produto,
@@ -116,7 +104,6 @@ ORDER  BY total_pedido DESC, pr.preco_base DESC;
 
 -- ------------------------------------------------------------
 -- 8. Clientes VIP com pedidos acima de R$ 80,00
---    Tabelas: cliente + conta_fidelidade + pedido
 -- ------------------------------------------------------------
 SELECT c.nome_completo AS cliente,
        cf.saldo        AS pontos_fidelidade,

@@ -4,7 +4,17 @@ CREATE SCHEMA bellamassa;
 CREATE TABLE bellamassa.cliente (
   id_cliente  INT PRIMARY KEY,
   nome_completo varchar(50) NOT NULL,
-  telefone varchar(14) NOT NULL
+);
+
+CREATE TABLE bellamassa.telefone (
+  id_telefone INT PRIMARY KEY,
+  fk_id_cliente INT,
+  telefone varchar(15) NOT NULL,
+
+  CONSTRAINT fk_telefone_cliente
+    FOREIGN KEY (fk_id_cliente)
+    REFERENCES bellamassa.cliente (id_cliente)
+    ON DELETE CASCADE
 );
 
 CREATE TABLE bellamassa.conta_fidelidade (
