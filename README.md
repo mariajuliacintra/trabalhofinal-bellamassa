@@ -70,6 +70,7 @@ Após a modelagem conceitual, foi realizada a transformação para o modelo lóg
 |--------------------|----------------------|--------|-------------------------------------|
 | `Cliente`          | `id_cliente`         | INT    | Auto incremento                     |
 | `Endereco`         | `id_endereco`        | INT    | Auto incremento                     |
+| `Telefone`         | `id_telefone`        | INT    | Auto incremento                     |
 | `Produto`          | `id_produto`         | INT    | Auto incremento                     |
 | `Pedido`           | `id_pedido`          | INT    | Auto incremento                     |
 | `Pedido_produto`   | `id_pedido_produto`  | INT    | Auto incremento                     |
@@ -78,14 +79,15 @@ Após a modelagem conceitual, foi realizada a transformação para o modelo lóg
 
 ### Chaves Estrangeiras (FK)
 
-| Tabela             | Chave Estrangeira   | Referencia                  | Relacionamento |
-|--------------------|---------------------|-----------------------------|----------------|
-| `Endereco`         | `id_cliente`        | `Cliente(id_cliente)`       | N:1            |
-| `Pedido`           | `id_cliente`        | `Cliente(id_cliente)`       | N:1            |
-| `Pedido_produto`   | `id_pedido`         | `Pedido(id_pedido)`         | N:1            |
-| `Pedido_produto`   | `id_produto`        | `Produto(id_produto)`       | N:1            |
-| `Pedido`           | `cpf_motoboy`       | `Motoboy(cpf)`              | N:1            |
-| `Conta_fidelidade` | `id_cliente`        | `Cliente(id_cliente)`       | 1:1            |
+| Tabela             | Chave Estrangeira | Referencia              | Relacionamento |
+|--------------------|-------------------|-------------------------|----------------|
+| `Telefone`         | `fk_id_cliente`   | `Cliente(id_cliente)`   | N:1            |
+| `Endereco`         | `fk_id_cliente`   | `Cliente(id_cliente)`   | N:1            |
+| `Conta_fidelidade` | `fk_id_cliente`   | `Cliente(id_cliente)`   | 1:1            |
+| `Pedido`           | `fk_id_cliente`   | `Cliente(id_cliente)`   | N:1            |
+| `Pedido`           | `cpf_motoboy`     | `Motoboy(cpf)`          | N:1            |
+| `Pedido_produto`   | `id_pedido`       | `Pedido(id_pedido)`     | N:1            |
+| `Pedido_produto`   | `id_produto`      | `Produto(id_produto)`   | N:1            |
 
 ### MER (Modelo Entidade Relacionamento)
 
