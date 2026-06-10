@@ -14,7 +14,7 @@ ORDER  BY cf.saldo DESC;
 
 
 -- ------------------------------------------------------------
--- 2. Pedidos realizados em junho de 2026, com nome do cliente
+-- 2. Pedidos realizados em maio de 2026, com nome do cliente
 -- ------------------------------------------------------------
 SELECT p.id_pedido,
        c.nome_completo  AS cliente,

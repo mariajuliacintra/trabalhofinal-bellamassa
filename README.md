@@ -23,6 +23,7 @@ Nesta etapa foi realizada a identificação das entidades, atributos e relaciona
 
 - **Cliente** – representa o cliente que realiza pedidos na pizzaria;
 - **Endereço** – endereço associado ao cliente para fins de entrega;
+- **Telefone** – número de contato associado ao cliente;
 - **Pedido** – registro de cada compra realizada por um cliente;
 - **Produto** – itens disponíveis no cardápio (pizzas e bebidas);
 - **Motoboy** – responsável por realizar as entregas dos pedidos;
@@ -54,6 +55,7 @@ Após a modelagem conceitual, foi realizada a transformação para o modelo lóg
 |------------------|--------------------------------------------------------|
 | `Cliente`        | Armazena os dados dos clientes                         |
 | `Endereco`       | Armazena o endereço de entrega do cliente              |
+| `Telefone`       | Armazena os telefones associados a cada cliente        |
 | `Produto`        | Armazena os itens do cardápio (pizzas e bebidas)       |
 | `Pedido`         | Registra os pedidos realizados                         |
 | `Pedido_produto` | Tabela associativa entre Pedido e Produto (N:N)        |
